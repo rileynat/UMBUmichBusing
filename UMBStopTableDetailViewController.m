@@ -1,32 +1,28 @@
 //
-//  UMBStopsTableViewController.m
+//  UMBStopTableDetailViewController.m
 //  UMBUMichBusing
 //
 //  Created by Nathan Riley on 10/11/13.
 //  Copyright (c) 2013 Nathan Riley. All rights reserved.
 //
 
-#import "UMBStopsTableViewController.h"
-#import "UMBXMLDataModel.h"
 #import "UMBStopTableDetailViewController.h"
 
-@interface UMBStopsTableViewController (){
-    NSArray* _stopsArray;
+@interface UMBStopTableDetailViewController () {
+    NSDictionary* _stop;
 }
 
 @end
 
-@implementation UMBStopsTableViewController
+@implementation UMBStopTableDetailViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
-        _stopsArray = [NSArray new];
-        _stopsArray = [[UMBXMLDataModel defaultXMLDataModel] getActiveStops];
         [self.tableView setDelegate:self];
         [self.tableView setDataSource:self];
+        _stop = [NSDictionary new];
     }
     return self;
 }
@@ -34,7 +30,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -62,7 +57,7 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [_stopsArray count];
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -73,10 +68,10 @@
     if ( !cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    NSString *title = _stopsArray[indexPath.row];
-    
-    cell.textLabel.text = title;
-    
+//    NSString *title = _stopsArray[indexPath.row];
+//    
+//    cell.textLabel.text = title;
+//    
     // Configure the cell...
     return cell;
 }
@@ -103,24 +98,6 @@
     }   
 }
 */
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSArray* tempArray = [[UMBXMLDataModel defaultXMLDataModel] getActiveRoutes];
-    NSMutableArray* newArray = [NSMutableArray new];
-    for (NSDictionary* route in tempArray) {
-        for (NSDictionary* stop in route[@"stop"]) {
-            if ([stop[@"name2"] isEqualToString:_stopsArray[indexPath.row]]) {
-                [newArray addObject:route];
-            }
-        }
-    }
-    NSDictionary* newDict = @{@"routesArray": newArray, @"name2": _stopsArray[indexPath.row]};
-    //[NSDictionary dictionaryWithObject:newArray forKey:@"routesArray"];
-    
-    UMBStopTableDetailViewController* detailViewController = [[UMBStopTableDetailViewController alloc] initWithStyle:UITableViewStylePlain];
-    [detailViewController setStop:newDict];
-    [self.navigationController pushViewController:detailViewController animated:YES];
-}
 
 /*
 // Override to support rearranging the table view.

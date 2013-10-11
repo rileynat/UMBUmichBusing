@@ -9,6 +9,8 @@
 #import "UMBRoutesRootViewController.h"
 #import "UMBXMLDataModel.h"
 #import "UIColor+VFAdditions.h"
+#import "UMBRouteDetailViewController.h"
+#import "UMBDeveloperCreditViewController.h"
 
 @interface UMBRoutesRootViewController () {
     NSArray* _routesArray;
@@ -27,7 +29,6 @@
         _routesArray = [[UMBXMLDataModel defaultXMLDataModel] getActiveRoutes];
         [self.tableView setDelegate:self];
         [self.tableView setDataSource:self];
-        _navigationController = [[UINavigationController alloc] init];
     }
     return self;
 }
@@ -109,6 +110,15 @@
 }
 */
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UMBRouteDetailViewController* detailViewController = [[UMBRouteDetailViewController alloc] initWithStyle:UITableViewStylePlain];
+    [detailViewController setRoute:_routesArray[indexPath.row]];
+    
+    //UMBDeveloperCreditViewController* viewController = [[UMBDeveloperCreditViewController alloc] init];
+    [self.navigationController pushViewController:detailViewController animated:YES];
+    
+}
+
 /*
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
@@ -136,5 +146,7 @@
 }
 
  */
+
+
 
 @end

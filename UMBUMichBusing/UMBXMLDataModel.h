@@ -18,6 +18,8 @@
 
 - (NSArray*)getActiveRoutes;
 
-- (NSArray*)getBusRouteStops;
+- (NSArray*)getAllBusRouteStops;
+
+- (NSArray*)getActiveStops;
 
 @end

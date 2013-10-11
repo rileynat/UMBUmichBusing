@@ -58,10 +58,22 @@ NSString* kUMBStopsURL = @"http://mbus.pts.umich.edu/shared/stops.xml";
     return tempDict;
 }
 
-- (NSArray*)getBusRouteStops {
+- (NSArray*)getAllBusRouteStops {
     return _xmlStopsDict[@"stop"];
 }
 
+- (NSArray*)getActiveStops{
+    NSMutableSet* _activeSet = [NSMutableSet new];
+    NSArray* tempArray = _xmlPublicFeedDict[@"route"];
+    for (NSDictionary* routes in tempArray) {
+        for (NSDictionary* stop in routes[@"stop"]) {
+            [_activeSet addObject:stop[@"name2"]];
+        }
+    }
+    NSArray* returnArray = [_activeSet allObjects];
+    
+    return returnArray;
+}
 
 
 + (UMBXMLDataModel*)defaultXMLDataModel {

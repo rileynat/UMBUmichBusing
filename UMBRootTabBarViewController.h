@@ -20,4 +20,9 @@
 
 @property (strong, nonatomic) UMBStopsTableViewController* stopsTableViewController;
 
+@property (strong, nonatomic) UINavigationController* routesNavController;
+
+@property (strong, nonatomic) UINavigationController* stopsNavController;
+
 @end
+

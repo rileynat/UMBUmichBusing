@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UMBStopsTableViewController : UITableViewController
+@interface UMBStopsTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 
 @end
