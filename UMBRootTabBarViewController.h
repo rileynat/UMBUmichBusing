@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UMBRootTabBarViewController : UITabBarController
+@class UMBDeveloperCreditViewController;
+@class UMBRoutesRootViewController;
+@class UMBStopsTableViewController;
+
+@interface UMBRootTabBarViewController : UITabBarController <UITabBarControllerDelegate>
+
+@property (strong, nonatomic) UMBDeveloperCreditViewController* developerViewController;
+
+@property (strong, nonatomic) UMBRoutesRootViewController* routesRootViewController;
+
+@property (strong, nonatomic) UMBStopsTableViewController* stopsTableViewController;
 
 @end

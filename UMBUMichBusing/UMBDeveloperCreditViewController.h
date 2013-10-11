@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UMBViewController : UIViewController
+@interface UMBDeveloperCreditViewController : UIViewController
 
 @end

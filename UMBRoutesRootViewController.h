@@ -10,4 +10,6 @@
 
 @interface UMBRoutesRootViewController : UITableViewController
 
+@property (strong, nonatomic) UINavigationController* navigationController;
+
 @end

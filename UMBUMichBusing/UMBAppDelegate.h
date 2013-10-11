@@ -8,12 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@class UMBViewController;
+@class UMBDeveloperCreditViewController;
+@class UMBRootTabBarViewController;
 
 @interface UMBAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) UMBViewController *viewController;
+@property (strong, nonatomic) UMBDeveloperCreditViewController *viewController;
+
+@property (strong, nonatomic) UMBRootTabBarViewController* tabBarController;
 
 @end

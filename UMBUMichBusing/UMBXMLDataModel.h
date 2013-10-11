@@ -8,6 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-@interface UMBXMLData : NSObject
+@interface UMBXMLDataModel : NSObject
+
++ (UMBXMLDataModel*)defaultXMLDataModel;
+
+- (void)startParsingData;
+
+- (NSDictionary*)getPublicFeedDictionary;
+
+- (NSArray*)getActiveRoutes;
+
+- (NSArray*)getBusRouteStops;
 
 @end

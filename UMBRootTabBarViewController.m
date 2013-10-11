@@ -7,6 +7,9 @@
 //
 
 #import "UMBRootTabBarViewController.h"
+#import "UMBDeveloperCreditViewController.h"
+#import "UMBRoutesRootViewController.h"
+#import "UMBStopsTableViewController.h"
 
 @interface UMBRootTabBarViewController ()
 
@@ -19,6 +22,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        [self setDelegate:self];
     }
     return self;
 }
@@ -26,7 +30,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	 //Do any additional setup after loading the view.
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        self.developerViewController = [[UMBDeveloperCreditViewController alloc] initWithNibName:@"UMBDeveloperCreditViewController_iPhone" bundle:nil];
+    } else {
+        self.developerViewController = [[UMBDeveloperCreditViewController alloc] initWithNibName:@"UMBDeveloperCreditViewController_iPad" bundle:nil];
+    }
+    [_developerViewController setTitle:@"Developer"];
+    
+    _routesRootViewController = [[UMBRoutesRootViewController alloc] initWithStyle:UITableViewStylePlain];
+    [_routesRootViewController setTitle:@"Routes"];
+    
+    _stopsTableViewController = [[UMBStopsTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    [_stopsTableViewController setTitle:@"Stops"];
+    
+    
+    [self setViewControllers:[NSArray arrayWithObjects:_routesRootViewController, _developerViewController, nil]];
+    [self setSelectedViewController:_routesRootViewController];
 }
 
 - (void)didReceiveMemoryWarning

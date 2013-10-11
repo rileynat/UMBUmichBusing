@@ -8,7 +8,23 @@
 
 #import "UMBAppDelegate.h"
 
-#import "UMBViewController.h"
+#import "UMBDeveloperCreditViewController.h"
+#import "UMBRootTabBarViewController.h"
+#import "UMBXMLDataModel.h"
+#import "UMBLocationDataModel.h"
+
+
+void _vfuncaughtExceptionHandler(NSException *exception) {
+    NSLog(@"CRASH: %@", exception);
+    NSLog(@"Stack Trace: %@", [exception callStackSymbols]);
+    // Internal error reporting
+}
+__attribute((constructor))
+static void VFSetUncaughtExceptionHandler(){
+    if( !NSGetUncaughtExceptionHandler()){
+        NSSetUncaughtExceptionHandler(&_vfuncaughtExceptionHandler);
+    }
+}
 
 @implementation UMBAppDelegate
 
@@ -16,12 +32,18 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        self.viewController = [[UMBViewController alloc] initWithNibName:@"UMBViewController_iPhone" bundle:nil];
-    } else {
-        self.viewController = [[UMBViewController alloc] initWithNibName:@"UMBViewController_iPad" bundle:nil];
-    }
-    self.window.rootViewController = self.viewController;
+//    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+//        self.viewController = [[UMBViewController alloc] initWithNibName:@"UMBViewController_iPhone" bundle:nil];
+//    } else {
+//        self.viewController = [[UMBViewController alloc] initWithNibName:@"UMBViewController_iPad" bundle:nil];
+//    }
+    [[UMBXMLDataModel defaultXMLDataModel] startParsingData];
+    [[UMBLocationDataModel defaultLocationDataModel] setUpLocationServices];
+    
+    self.tabBarController = [UMBRootTabBarViewController new];
+    //[self.tabBarController setViewControllers:[NSArray arrayWithObject:self.viewController]];
+    
+    self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     return YES;
 }

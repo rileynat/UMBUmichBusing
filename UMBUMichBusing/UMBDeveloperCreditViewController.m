@@ -6,18 +6,26 @@
 //  Copyright (c) 2013 Nathan Riley. All rights reserved.
 //
 
-#import "UMBViewController.h"
+#import "UMBDeveloperCreditViewController.h"
+#import "UMBXMLDataModel.h"
+#import "XMLDictionary.h"
 
-@interface UMBViewController ()
+@interface UMBDeveloperCreditViewController ()
 
 @end
 
-@implementation UMBViewController
+@implementation UMBDeveloperCreditViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    [[UMBXMLDataModel defaultXMLDataModel] startParsingData];
+    UIViewController *veiw = [[UIViewController alloc] init];
+    [veiw.view setBackgroundColor:[UIColor blueColor]];
+    
+    
+
 }
 
 - (void)didReceiveMemoryWarning

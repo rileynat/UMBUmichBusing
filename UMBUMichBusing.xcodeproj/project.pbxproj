@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		372446EC17E364CA006DAAC4 /* UMBRootTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 372446EB17E364CA006DAAC4 /* UMBRootTabBarViewController.m */; };
+		372446F217E36976006DAAC4 /* UMBRoutesRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 372446F117E36976006DAAC4 /* UMBRoutesRootViewController.m */; };
+		372F2C6917E3888700AEE8DC /* UIColor+VFAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 372F2C6817E3881700AEE8DC /* UIColor+VFAdditions.m */; };
 		374B36FA17DF8C31008C8828 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 374B36F917DF8C31008C8828 /* UIKit.framework */; };
 		374B36FC17DF8C31008C8828 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 374B36FB17DF8C31008C8828 /* Foundation.framework */; };
 		374B36FE17DF8C31008C8828 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 374B36FD17DF8C31008C8828 /* CoreGraphics.framework */; };
@@ -16,12 +19,25 @@
 		374B370C17DF8C31008C8828 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 374B370B17DF8C31008C8828 /* Default.png */; };
 		374B370E17DF8C31008C8828 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 374B370D17DF8C31008C8828 /* Default@2x.png */; };
 		374B371017DF8C31008C8828 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 374B370F17DF8C31008C8828 /* Default-568h@2x.png */; };
-		374B371317DF8C31008C8828 /* UMBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 374B371217DF8C31008C8828 /* UMBViewController.m */; };
-		374B371617DF8C31008C8828 /* UMBViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 374B371417DF8C31008C8828 /* UMBViewController_iPhone.xib */; };
-		374B371917DF8C31008C8828 /* UMBViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 374B371717DF8C31008C8828 /* UMBViewController_iPad.xib */; };
+		374B371317DF8C31008C8828 /* UMBDeveloperCreditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 374B371217DF8C31008C8828 /* UMBDeveloperCreditViewController.m */; };
+		374B371617DF8C31008C8828 /* UMBDeveloperCreditViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 374B371417DF8C31008C8828 /* UMBDeveloperCreditViewController_iPhone.xib */; };
+		374B371917DF8C31008C8828 /* UMBDeveloperCreditViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 374B371717DF8C31008C8828 /* UMBDeveloperCreditViewController_iPad.xib */; };
+		37638DFB17DF8D1900F143B6 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 37638DF917DF8D1900F143B6 /* libxml2.2.dylib */; };
+		37638DFC17DF8D1900F143B6 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 37638DFA17DF8D1900F143B6 /* libxml2.dylib */; };
+		37638DFF17DF8E5700F143B6 /* UMBXMLDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37638DFE17DF8E5700F143B6 /* UMBXMLDataModel.m */; };
+		376C1DEC1808705D0038166A /* UMBStopsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 376C1DEB1808705D0038166A /* UMBStopsTableViewController.m */; };
+		37AC4EA417DFA03000D1A425 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 37638E0217DF979100F143B6 /* XMLDictionary.m */; };
+		37E2D9C217F38E0E000C457D /* UMBLocationDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E2D9C117F38E0E000C457D /* UMBLocationDataModel.m */; };
+		37E2D9C417F38E25000C457D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E2D9C317F38E25000C457D /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		372446EA17E364CA006DAAC4 /* UMBRootTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UMBRootTabBarViewController.h; path = ../UMBRootTabBarViewController.h; sourceTree = "<group>"; };
+		372446EB17E364CA006DAAC4 /* UMBRootTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UMBRootTabBarViewController.m; path = ../UMBRootTabBarViewController.m; sourceTree = "<group>"; };
+		372446F017E36976006DAAC4 /* UMBRoutesRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UMBRoutesRootViewController.h; path = ../UMBRoutesRootViewController.h; sourceTree = "<group>"; };
+		372446F117E36976006DAAC4 /* UMBRoutesRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UMBRoutesRootViewController.m; path = ../UMBRoutesRootViewController.m; sourceTree = "<group>"; };
+		372F2C6717E3881700AEE8DC /* UIColor+VFAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIColor+VFAdditions.h"; path = "../UIColor+VFAdditions.h"; sourceTree = "<group>"; };
+		372F2C6817E3881700AEE8DC /* UIColor+VFAdditions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIColor+VFAdditions.m"; path = "../UIColor+VFAdditions.m"; sourceTree = "<group>"; };
 		374B36F617DF8C31008C8828 /* UMBUMichBusing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UMBUMichBusing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		374B36F917DF8C31008C8828 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		374B36FB17DF8C31008C8828 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -35,10 +51,21 @@
 		374B370B17DF8C31008C8828 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		374B370D17DF8C31008C8828 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		374B370F17DF8C31008C8828 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		374B371117DF8C31008C8828 /* UMBViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMBViewController.h; sourceTree = "<group>"; };
-		374B371217DF8C31008C8828 /* UMBViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMBViewController.m; sourceTree = "<group>"; };
-		374B371517DF8C31008C8828 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/UMBViewController_iPhone.xib; sourceTree = "<group>"; };
-		374B371817DF8C31008C8828 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/UMBViewController_iPad.xib; sourceTree = "<group>"; };
+		374B371117DF8C31008C8828 /* UMBDeveloperCreditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UMBDeveloperCreditViewController.h; sourceTree = "<group>"; };
+		374B371217DF8C31008C8828 /* UMBDeveloperCreditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UMBDeveloperCreditViewController.m; sourceTree = "<group>"; };
+		374B371517DF8C31008C8828 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/UMBDeveloperCreditViewController_iPhone.xib; sourceTree = "<group>"; };
+		374B371817DF8C31008C8828 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/UMBDeveloperCreditViewController_iPad.xib; sourceTree = "<group>"; };
+		37638DF917DF8D1900F143B6 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
+		37638DFA17DF8D1900F143B6 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		37638DFD17DF8E5700F143B6 /* UMBXMLDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMBXMLDataModel.h; sourceTree = "<group>"; };
+		37638DFE17DF8E5700F143B6 /* UMBXMLDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMBXMLDataModel.m; sourceTree = "<group>"; };
+		37638E0117DF979100F143B6 /* XMLDictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = XMLDictionary.h; path = externals/XMLDictionary/XMLDictionary.h; sourceTree = "<group>"; };
+		37638E0217DF979100F143B6 /* XMLDictionary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = XMLDictionary.m; path = externals/XMLDictionary/XMLDictionary.m; sourceTree = "<group>"; };
+		376C1DEA1808705D0038166A /* UMBStopsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UMBStopsTableViewController.h; path = ../UMBStopsTableViewController.h; sourceTree = "<group>"; };
+		376C1DEB1808705D0038166A /* UMBStopsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UMBStopsTableViewController.m; path = ../UMBStopsTableViewController.m; sourceTree = "<group>"; };
+		37E2D9C017F38E0E000C457D /* UMBLocationDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UMBLocationDataModel.h; path = ../UMBLocationDataModel.h; sourceTree = "<group>"; };
+		37E2D9C117F38E0E000C457D /* UMBLocationDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UMBLocationDataModel.m; path = ../UMBLocationDataModel.m; sourceTree = "<group>"; };
+		37E2D9C317F38E25000C457D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +73,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37E2D9C417F38E25000C457D /* CoreLocation.framework in Frameworks */,
+				37638DFB17DF8D1900F143B6 /* libxml2.2.dylib in Frameworks */,
+				37638DFC17DF8D1900F143B6 /* libxml2.dylib in Frameworks */,
 				374B36FA17DF8C31008C8828 /* UIKit.framework in Frameworks */,
 				374B36FC17DF8C31008C8828 /* Foundation.framework in Frameworks */,
 				374B36FE17DF8C31008C8828 /* CoreGraphics.framework in Frameworks */,
@@ -75,6 +105,9 @@
 		374B36F817DF8C31008C8828 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				37E2D9C317F38E25000C457D /* CoreLocation.framework */,
+				37638DF917DF8D1900F143B6 /* libxml2.2.dylib */,
+				37638DFA17DF8D1900F143B6 /* libxml2.dylib */,
 				374B36F917DF8C31008C8828 /* UIKit.framework */,
 				374B36FB17DF8C31008C8828 /* Foundation.framework */,
 				374B36FD17DF8C31008C8828 /* CoreGraphics.framework */,
@@ -85,12 +118,25 @@
 		374B36FF17DF8C31008C8828 /* UMBUMichBusing */ = {
 			isa = PBXGroup;
 			children = (
+				37638E0317DF979B00F143B6 /* externals */,
 				374B370817DF8C31008C8828 /* UMBAppDelegate.h */,
 				374B370917DF8C31008C8828 /* UMBAppDelegate.m */,
-				374B371117DF8C31008C8828 /* UMBViewController.h */,
-				374B371217DF8C31008C8828 /* UMBViewController.m */,
-				374B371417DF8C31008C8828 /* UMBViewController_iPhone.xib */,
-				374B371717DF8C31008C8828 /* UMBViewController_iPad.xib */,
+				374B371117DF8C31008C8828 /* UMBDeveloperCreditViewController.h */,
+				374B371217DF8C31008C8828 /* UMBDeveloperCreditViewController.m */,
+				374B371417DF8C31008C8828 /* UMBDeveloperCreditViewController_iPhone.xib */,
+				374B371717DF8C31008C8828 /* UMBDeveloperCreditViewController_iPad.xib */,
+				372446EA17E364CA006DAAC4 /* UMBRootTabBarViewController.h */,
+				372446EB17E364CA006DAAC4 /* UMBRootTabBarViewController.m */,
+				372446F017E36976006DAAC4 /* UMBRoutesRootViewController.h */,
+				372446F117E36976006DAAC4 /* UMBRoutesRootViewController.m */,
+				376C1DEA1808705D0038166A /* UMBStopsTableViewController.h */,
+				376C1DEB1808705D0038166A /* UMBStopsTableViewController.m */,
+				37638DFD17DF8E5700F143B6 /* UMBXMLDataModel.h */,
+				37638DFE17DF8E5700F143B6 /* UMBXMLDataModel.m */,
+				37E2D9C017F38E0E000C457D /* UMBLocationDataModel.h */,
+				37E2D9C117F38E0E000C457D /* UMBLocationDataModel.m */,
+				372F2C6717E3881700AEE8DC /* UIColor+VFAdditions.h */,
+				372F2C6817E3881700AEE8DC /* UIColor+VFAdditions.m */,
 				374B370017DF8C31008C8828 /* Supporting Files */,
 			);
 			path = UMBUMichBusing;
@@ -108,6 +154,23 @@
 				374B370F17DF8C31008C8828 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		37638E0017DF976F00F143B6 /* XMLDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				37638E0117DF979100F143B6 /* XMLDictionary.h */,
+				37638E0217DF979100F143B6 /* XMLDictionary.m */,
+			);
+			name = XMLDictionary;
+			sourceTree = "<group>";
+		};
+		37638E0317DF979B00F143B6 /* externals */ = {
+			isa = PBXGroup;
+			children = (
+				37638E0017DF976F00F143B6 /* XMLDictionary */,
+			);
+			name = externals;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,8 +229,8 @@
 				374B370C17DF8C31008C8828 /* Default.png in Resources */,
 				374B370E17DF8C31008C8828 /* Default@2x.png in Resources */,
 				374B371017DF8C31008C8828 /* Default-568h@2x.png in Resources */,
-				374B371617DF8C31008C8828 /* UMBViewController_iPhone.xib in Resources */,
-				374B371917DF8C31008C8828 /* UMBViewController_iPad.xib in Resources */,
+				374B371617DF8C31008C8828 /* UMBDeveloperCreditViewController_iPhone.xib in Resources */,
+				374B371917DF8C31008C8828 /* UMBDeveloperCreditViewController_iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,9 +241,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				376C1DEC1808705D0038166A /* UMBStopsTableViewController.m in Sources */,
+				372F2C6917E3888700AEE8DC /* UIColor+VFAdditions.m in Sources */,
+				37E2D9C217F38E0E000C457D /* UMBLocationDataModel.m in Sources */,
+				37AC4EA417DFA03000D1A425 /* XMLDictionary.m in Sources */,
 				374B370617DF8C31008C8828 /* main.m in Sources */,
 				374B370A17DF8C31008C8828 /* UMBAppDelegate.m in Sources */,
-				374B371317DF8C31008C8828 /* UMBViewController.m in Sources */,
+				372446F217E36976006DAAC4 /* UMBRoutesRootViewController.m in Sources */,
+				372446EC17E364CA006DAAC4 /* UMBRootTabBarViewController.m in Sources */,
+				37638DFF17DF8E5700F143B6 /* UMBXMLDataModel.m in Sources */,
+				374B371317DF8C31008C8828 /* UMBDeveloperCreditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,20 +265,20 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		374B371417DF8C31008C8828 /* UMBViewController_iPhone.xib */ = {
+		374B371417DF8C31008C8828 /* UMBDeveloperCreditViewController_iPhone.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				374B371517DF8C31008C8828 /* en */,
 			);
-			name = UMBViewController_iPhone.xib;
+			name = UMBDeveloperCreditViewController_iPhone.xib;
 			sourceTree = "<group>";
 		};
-		374B371717DF8C31008C8828 /* UMBViewController_iPad.xib */ = {
+		374B371717DF8C31008C8828 /* UMBDeveloperCreditViewController_iPad.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				374B371817DF8C31008C8828 /* en */,
 			);
-			name = UMBViewController_iPad.xib;
+			name = UMBDeveloperCreditViewController_iPad.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -239,7 +309,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -264,7 +334,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -278,7 +348,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UMBUMichBusing/UMBUMichBusing-Prefix.pch";
 				INFOPLIST_FILE = "UMBUMichBusing/UMBUMichBusing-Info.plist";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -289,7 +361,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UMBUMichBusing/UMBUMichBusing-Prefix.pch";
 				INFOPLIST_FILE = "UMBUMichBusing/UMBUMichBusing-Info.plist";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -313,6 +387,7 @@
 				374B371E17DF8C31008C8828 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

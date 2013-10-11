@@ -1,33 +1,29 @@
 //
-//  UMBRoutesRootViewController.m
+//  UMBStopsTableViewController.m
 //  UMBUMichBusing
 //
-//  Created by Nathan Riley on 9/13/13.
+//  Created by Nathan Riley on 10/11/13.
 //  Copyright (c) 2013 Nathan Riley. All rights reserved.
 //
 
-#import "UMBRoutesRootViewController.h"
+#import "UMBStopsTableViewController.h"
 #import "UMBXMLDataModel.h"
-#import "UIColor+VFAdditions.h"
 
-@interface UMBRoutesRootViewController () {
-    NSArray* _routesArray;
+@interface UMBStopsTableViewController (){
+    NSArray* _stopsArray;
 }
 
 @end
 
-@implementation UMBRoutesRootViewController
+@implementation UMBStopsTableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        _routesArray = [NSArray new];
-        _routesArray = [[UMBXMLDataModel defaultXMLDataModel] getActiveRoutes];
-        [self.tableView setDelegate:self];
-        [self.tableView setDataSource:self];
-        _navigationController = [[UINavigationController alloc] init];
+        _stopsArray = [NSArray new];
+        _stopsArray = [[UMBXMLDataModel defaultXMLDataModel] getBusRouteStops];
     }
     return self;
 }
@@ -41,8 +37,6 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,14 +51,14 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 1;
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [_routesArray count];
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -73,14 +67,11 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if ( !cell) {
-         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    NSString *title = [_routesArray[indexPath.row] valueForKey:@"name"];
-    NSString *color = [_routesArray[indexPath.row] valueForKey:@"busroutecolor"];
-    UIColor *textColor = [UIColor colorWithHexString:color];
+    NSString *title = [_stopsArray[indexPath.row] valueForKey:@"name2"];
     
     cell.textLabel.text = title;
-    [cell.textLabel setTextColor:textColor];
     
     // Configure the cell...
     return cell;
