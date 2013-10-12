@@ -11,7 +11,7 @@
 #import "UMBStopTableDetailViewController.h"
 
 @interface UMBStopsTableViewController (){
-    NSArray* _stopsArray;
+    NSArray* _busArray;
 }
 
 @end
@@ -23,8 +23,8 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        _stopsArray = [NSArray new];
-        _stopsArray = [[UMBXMLDataModel defaultXMLDataModel] getActiveStops];
+        _busArray = [NSArray new];
+        _busArray = [[UMBXMLDataModel defaultXMLDataModel] getActiveStops];
         [self.tableView setDelegate:self];
         [self.tableView setDataSource:self];
     }
@@ -62,7 +62,7 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [_stopsArray count];
+    return [_busArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -73,7 +73,7 @@
     if ( !cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    NSString *title = _stopsArray[indexPath.row];
+    NSString *title = _busArray[indexPath.row];
     
     cell.textLabel.text = title;
     
@@ -107,14 +107,25 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSArray* tempArray = [[UMBXMLDataModel defaultXMLDataModel] getActiveRoutes];
     NSMutableArray* newArray = [NSMutableArray new];
+    double longitude = 0.0, latitude = 0.0;
+    int i = 1;
     for (NSDictionary* route in tempArray) {
         for (NSDictionary* stop in route[@"stop"]) {
-            if ([stop[@"name2"] isEqualToString:_stopsArray[indexPath.row]]) {
-                [newArray addObject:route];
+            if ([stop[@"name2"] isEqualToString:_busArray[indexPath.row]]) {
+                //[newArray addObject:route];
+                NSMutableDictionary* busDict = [NSMutableDictionary new];
+                [busDict setObject:route[@"name"] forKey:@"routeName"];
+                [busDict setObject:stop[@"toa1"] forKey:@"toa"];
+                longitude = (longitude + [stop[@"longitude"] doubleValue]) / (i * 1.0);
+                latitude = (latitude + [stop[@"latitude"] doubleValue]) / (i * 1.0);
+                i++;
+                [newArray addObject:busDict];
             }
         }
     }
-    NSDictionary* newDict = @{@"routesArray": newArray, @"name2": _stopsArray[indexPath.row]};
+    NSNumber *Latitude = [NSNumber numberWithDouble:latitude];
+    NSNumber *Longitude = [NSNumber numberWithDouble:longitude];
+    NSDictionary* newDict = @{@"routesArray": newArray, @"name2": _busArray[indexPath.row], @"longitude" : Longitude, @"latitude" : Latitude};
     //[NSDictionary dictionaryWithObject:newArray forKey:@"routesArray"];
     
     UMBStopTableDetailViewController* detailViewController = [[UMBStopTableDetailViewController alloc] initWithStyle:UITableViewStylePlain];

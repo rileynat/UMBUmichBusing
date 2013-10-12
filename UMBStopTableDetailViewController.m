@@ -57,7 +57,7 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [_stop[@"routesArray"] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -68,10 +68,10 @@
     if ( !cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-//    NSString *title = _stopsArray[indexPath.row];
-//    
-//    cell.textLabel.text = title;
-//    
+    NSString *title = _stop[@"routesArray"][indexPath.row][@"routeName"];
+    
+    cell.textLabel.text = title;
+    
     // Configure the cell...
     return cell;
 }
