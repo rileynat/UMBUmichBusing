@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface UMBXMLDataModel : NSObject
+@interface UMBXMLDataModel : NSObject <UIAlertViewDelegate>
+
+extern NSString* const kAskForRefreshNotificationName;
+extern NSString* const kRefreshedDataModelNotificationName;
 
 + (UMBXMLDataModel*)defaultXMLDataModel;
 

@@ -23,6 +23,12 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+        UIRefreshControl* refreshControl = [[UIRefreshControl alloc] init];
+        [refreshControl setTintColor:[UIColor colorWithRed:51.0f/255.0f green:102.0f/255.0f blue:153.0f/255.0f alpha:1.0f]];
+        [refreshControl addTarget:self action:@selector(refreshDataModel:) forControlEvents:UIControlEventValueChanged];
+        self.refreshControl = refreshControl;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewData:) name:kRefreshedDataModelNotificationName object:nil];
+        
         _busArray = [NSArray new];
         _busArray = [[UMBXMLDataModel defaultXMLDataModel] getActiveStops];
         [self.tableView setDelegate:self];
@@ -41,6 +47,15 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)refreshDataModel:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kAskForRefreshNotificationName object:nil];
+}
+
+- (void)reloadTableViewData:(id)sender {
+    [self.refreshControl endRefreshing];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning

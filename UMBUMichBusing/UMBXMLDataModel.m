@@ -9,8 +9,10 @@
 #import "UMBXMLDataModel.h"
 #import "XMLDictionary.h"
 
-NSString* kUMBLiveArrivalFeedURL = @"http://mbus.pts.umich.edu/shared/public_feed.xml";
-NSString* kUMBStopsURL = @"http://mbus.pts.umich.edu/shared/stops.xml";
+NSString* const kUMBLiveArrivalFeedURL = @"http://mbus.pts.umich.edu/shared/public_feed.xml";
+NSString* const kUMBStopsURL = @"http://mbus.pts.umich.edu/shared/stops.xml";
+NSString* const kAskForRefreshNotificationName = @"kAskForRefreshNotificationSent";
+NSString* const kRefreshedDataModelNotificationName = @"kRefreshedDataModelNotificationName";
 
 @interface UMBXMLDataModel () {
     NSURL* _xmlPublicFeedURL;
@@ -27,7 +29,7 @@ NSString* kUMBStopsURL = @"http://mbus.pts.umich.edu/shared/stops.xml";
 - (id)init {
     self = [super init];
     if (self) {
-        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshDataModelFromServer:) name:kAskForRefreshNotificationName object:nil];
     }
     
     return self;
@@ -36,13 +38,19 @@ NSString* kUMBStopsURL = @"http://mbus.pts.umich.edu/shared/stops.xml";
 
 - (void)startParsingData {
     
+    NSError* error;
+    
     _xmlPublicFeedURL = [NSURL URLWithString:kUMBLiveArrivalFeedURL];
     _xmlStopsURL = [NSURL URLWithString:kUMBStopsURL];
     
     NSString *string = [[NSString alloc] initWithContentsOfURL:_xmlPublicFeedURL encoding:NSUTF8StringEncoding error:NULL];
     _xmlPublicFeedDict = [NSDictionary dictionaryWithXMLString:string];
     
-    string = [[NSString alloc] initWithContentsOfURL:_xmlStopsURL encoding:NSUTF8StringEncoding error:NULL];
+    string = [[NSString alloc] initWithContentsOfURL:_xmlStopsURL encoding:NSUTF8StringEncoding error:&error];
+    if ( error ) {
+        UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Error in loading data" message:@"When connecting to the Magic Bus server there was a connection error and the information could not be downloaded. Drag upward on any screen to refresh." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
+        [alertView show];
+    }
     _xmlStopsDict = [NSDictionary dictionaryWithXMLString:string];
     
 }
@@ -73,6 +81,16 @@ NSString* kUMBStopsURL = @"http://mbus.pts.umich.edu/shared/stops.xml";
     NSArray* returnArray = [_activeSet allObjects];
     
     return returnArray;
+}
+
+- (void)refreshDataModelFromServer:(id)sender {
+    [self startParsingData];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshedDataModelNotificationName object:nil];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 

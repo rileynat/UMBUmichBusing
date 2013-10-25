@@ -10,6 +10,6 @@
 
 @interface UMBRoutesRootViewController : UITableViewController
 
-//@property (strong, nonatomic) UINavigationController* navigationController;
+@property (nonatomic, strong) UIRefreshControl* refreshControl;
 
 @end

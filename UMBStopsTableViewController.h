@@ -10,4 +10,6 @@
 
 @interface UMBStopsTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 
+@property (nonatomic, strong) UIRefreshControl* refreshControl;
+
 @end
