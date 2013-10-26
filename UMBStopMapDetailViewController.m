@@ -7,6 +7,9 @@
 //
 
 #import "UMBStopMapDetailViewController.h"
+#import "UMBLocationDataModel.h"
+
+#define OFFSET_FOR_HALF_MAP 0.0008
 
 @interface UMBStopMapDetailViewController () {
     MKMapView* _mapView;
@@ -17,13 +20,12 @@
 
 @implementation UMBStopMapDetailViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-        _mapView = [[MKMapView alloc] initWithFrame:self.view.frame];
+- (id)initWithStop:(NSDictionary*)stop {
+    self = [super initWithNibName:nil bundle:nil];
+        if ( self ) {
+        _stop = stop;
     }
+    
     return self;
 }
 
@@ -31,6 +33,15 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    [self.view setFrame:[UIScreen mainScreen].bounds];
+    _mapView = [[UMBLocationDataModel defaultLocationDataModel] getMapView];
+    if ( _mapView ) {
+    [[UMBLocationDataModel defaultLocationDataModel] recenterMapAtCoordinates:CLLocationCoordinate2DMake([_stop[@"latitude"] doubleValue] + OFFSET_FOR_HALF_MAP, [_stop[@"longitude"] doubleValue])];
+    } else  {
+        _mapView = [[MKMapView alloc] init];
+    }
+    [_mapView setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height * 0.5)];
+    [self.view addSubview:_mapView];
 }
 
 - (void)didReceiveMemoryWarning

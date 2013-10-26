@@ -12,4 +12,8 @@
 
 @property (strong, nonatomic) NSDictionary* route;
 
+@property (strong, nonatomic) UIRefreshControl* refreshControl;
+
+- (id)initWithRouteWithName:(NSString*)routeName;
+
 @end

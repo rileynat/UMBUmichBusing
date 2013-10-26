@@ -8,13 +8,20 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
 
-@interface UMBLocationDataModel : NSObject <CLLocationManagerDelegate>
+@interface UMBLocationDataModel : NSObject <CLLocationManagerDelegate, MKMapViewDelegate>
 
 @property (nonatomic, strong) CLLocation* currentLocation;
 
 - (void)setUpLocationServices;
 
+- (MKMapView*)getMapView;
+
+- (void)recenterMapAtCoordinates:(CLLocationCoordinate2D)coord;
+
 + (UMBLocationDataModel*)defaultLocationDataModel;
+
+- (CLLocationCoordinate2D)getUserLocation;
 
 @end

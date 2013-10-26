@@ -23,6 +23,14 @@ extern NSString* const kRefreshedDataModelNotificationName;
 
 - (NSArray*)getAllBusRouteStops;
 
+- (NSArray*)getStopsForRouteWithName:(NSString*)routeName;
+
+- (NSDictionary*)getStopWithName:(NSString*)stopName;
+
 - (NSArray*)getActiveStops;
+
+- (NSArray*)getActiveStopsSortedByUserLocation;
+
+- (NSArray*)sortStopsWithLatAndLong;
 
 @end

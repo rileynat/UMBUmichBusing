@@ -7,6 +7,7 @@
 //
 
 #import "UMBRouteDetailViewController.h"
+#import "UMBXMLDataModel.h"
 
 
 @interface UMBRouteDetailViewController () {
@@ -17,15 +18,22 @@
 
 @implementation UMBRouteDetailViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
+- (id)initWithRouteWithName:(NSString*)routeName {
+    self = [super initWithStyle:UITableViewStylePlain];
+    if ( self ) {
+        UIRefreshControl* refreshControl = [[UIRefreshControl alloc] init];
+        [refreshControl setTintColor:[UIColor colorWithRed:51.0f/255.0f green:102.0f/255.0f blue:153.0f/255.0f alpha:1.0f]];
+        [refreshControl addTarget:self action:@selector(refreshDataModel:) forControlEvents:UIControlEventValueChanged];
+        self.refreshControl = refreshControl;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewData:) name:kRefreshedDataModelNotificationName object:nil];
+        
         [self.tableView setDataSource:self];
         [self.tableView setDelegate:self];
-        _route = [NSDictionary new];
+        _stops = [[UMBXMLDataModel defaultXMLDataModel] getStopsForRouteWithName:routeName];
+        
+        
     }
+    
     return self;
 }
 
@@ -38,6 +46,15 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)refreshDataModel:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kAskForRefreshNotificationName object:nil];
+}
+
+- (void)reloadTableViewData:(id)sender {
+    [self.refreshControl endRefreshing];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,8 +76,7 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    _stops = _route[@"stop"];
-    return [_route[@"stop"] count];
+    return [_stops count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -71,9 +87,12 @@
     if ( !cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    NSString *title = _stops[indexPath.row][@"name2"];
+    NSString *title = _stops[indexPath.row][@"name"];
+    NSString* subtitle = @"12 minutes and 40 seconds";
+    //NSString* subtitle = _stops[indexPath.row][@"toa1"];
     
     cell.textLabel.text = title;
+    cell.detailTextLabel.text = subtitle;
     
     // Configure the cell...
     return cell;
@@ -117,6 +136,11 @@
     return YES;
 }
 */
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 /*
 #pragma mark - Navigation

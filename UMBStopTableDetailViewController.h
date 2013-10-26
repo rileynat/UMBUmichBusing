@@ -10,6 +10,10 @@
 
 @interface UMBStopTableDetailViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) NSDictionary* stop;
+@property (nonatomic, strong) NSString* stopName;
+
+@property (nonatomic, strong) UIRefreshControl* refreshControl;
+
+- (id)initWithStop:(NSDictionary*)stop;
 
 @end

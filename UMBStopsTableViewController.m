@@ -9,6 +9,8 @@
 #import "UMBStopsTableViewController.h"
 #import "UMBXMLDataModel.h"
 #import "UMBStopTableDetailViewController.h"
+#import "UMBStopMapDetailViewController.h"
+#import "UMBStopDetailRootViewController.h"
 
 @interface UMBStopsTableViewController (){
     NSArray* _busArray;
@@ -30,7 +32,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewData:) name:kRefreshedDataModelNotificationName object:nil];
         
         _busArray = [NSArray new];
-        _busArray = [[UMBXMLDataModel defaultXMLDataModel] getActiveStops];
+        _busArray = [[UMBXMLDataModel defaultXMLDataModel] getActiveStopsSortedByUserLocation];
         [self.tableView setDelegate:self];
         [self.tableView setDataSource:self];
     }
@@ -62,6 +64,14 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return 40.0f;
+    } else {
+        return 40.0f;
+    }
 }
 
 #pragma mark - Table view data source
@@ -120,31 +130,32 @@
 */
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSArray* tempArray = [[UMBXMLDataModel defaultXMLDataModel] getActiveRoutes];
-    NSMutableArray* newArray = [NSMutableArray new];
-    double longitude = 0.0, latitude = 0.0;
-    int i = 1;
-    for (NSDictionary* route in tempArray) {
-        for (NSDictionary* stop in route[@"stop"]) {
-            if ([stop[@"name2"] isEqualToString:_busArray[indexPath.row]]) {
-                //[newArray addObject:route];
-                NSMutableDictionary* busDict = [NSMutableDictionary new];
-                [busDict setObject:route[@"name"] forKey:@"routeName"];
-                [busDict setObject:stop[@"toa1"] forKey:@"toa"];
-                longitude = (longitude + [stop[@"longitude"] doubleValue]) / (i * 1.0);
-                latitude = (latitude + [stop[@"latitude"] doubleValue]) / (i * 1.0);
-                i++;
-                [newArray addObject:busDict];
-            }
-        }
-    }
-    NSNumber *Latitude = [NSNumber numberWithDouble:latitude];
-    NSNumber *Longitude = [NSNumber numberWithDouble:longitude];
-    NSDictionary* newDict = @{@"routesArray": newArray, @"name2": _busArray[indexPath.row], @"longitude" : Longitude, @"latitude" : Latitude};
+//    NSArray* tempArray = [[UMBXMLDataModel defaultXMLDataModel] getActiveRoutes];
+//    NSMutableArray* newArray = [NSMutableArray new];
+//    double longitude = 0.0, latitude = 0.0;
+//    int i = 1;
+//    for (NSDictionary* route in tempArray) {
+//        for (NSDictionary* stop in route[@"stop"]) {
+//            if ([stop[@"name2"] isEqualToString:_busArray[indexPath.row]]) {
+//                //[newArray addObject:route];
+//                NSMutableDictionary* busDict = [NSMutableDictionary new];
+//                [busDict setObject:route[@"name"] forKey:@"routeName"];
+//                [busDict setObject:stop[@"toa1"] forKey:@"toa"];
+//                longitude = (longitude + [stop[@"longitude"] doubleValue]) / (i * 1.0);
+//                latitude = (latitude + [stop[@"latitude"] doubleValue]) / (i * 1.0);
+//                i++;
+//                [newArray addObject:busDict];
+//            }
+//        }
+//    }
+//    NSNumber *Latitude = [NSNumber numberWithDouble:latitude];
+//    NSNumber *Longitude = [NSNumber numberWithDouble:longitude];
+//    NSDictionary* newDict = @{@"routesArray": newArray, @"name2": _busArray[indexPath.row], @"longitude" : Longitude, @"latitude" : Latitude};
     //[NSDictionary dictionaryWithObject:newArray forKey:@"routesArray"];
+//    UMBStopTableDetailViewController* detailViewController = [[UMBStopTableDetailViewController alloc] initWithStopName:_busArray[indexPath.row]];
+//    [self.navigationController pushViewController:detailViewController animated:YES];
     
-    UMBStopTableDetailViewController* detailViewController = [[UMBStopTableDetailViewController alloc] initWithStyle:UITableViewStylePlain];
-    [detailViewController setStop:newDict];
+    UMBStopDetailRootViewController* detailViewController = [[UMBStopDetailRootViewController alloc] initWithStopName:_busArray[indexPath.row]];
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
@@ -163,6 +174,11 @@
     return YES;
 }
 */
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 /*
 #pragma mark - Navigation

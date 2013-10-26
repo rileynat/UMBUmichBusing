@@ -7,6 +7,7 @@
 //
 
 #import "UMBStopTableDetailViewController.h"
+#import "UMBXMLDataModel.h"
 
 @interface UMBStopTableDetailViewController () {
     NSDictionary* _stop;
@@ -16,26 +17,43 @@
 
 @implementation UMBStopTableDetailViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
+- (id)initWithStop:(NSDictionary*)stop {
+    self = [super initWithStyle:UITableViewStylePlain];
+    if ( self ) {
+        UIRefreshControl* refreshControl = [[UIRefreshControl alloc] init];
+        [refreshControl setTintColor:[UIColor colorWithRed:51.0f/255.0f green:102.0f/255.0f blue:153.0f/255.0f alpha:1.0f]];
+        [refreshControl addTarget:self action:@selector(refreshDataModel:) forControlEvents:UIControlEventValueChanged];
+        self.refreshControl = refreshControl;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewData:) name:kRefreshedDataModelNotificationName object:nil];
+        
         [self.tableView setDelegate:self];
         [self.tableView setDataSource:self];
-        _stop = [NSDictionary new];
+        
+        _stop = stop;
+        //[[UMBXMLDataModel defaultXMLDataModel] getStopWithName:stopName];
+        
     }
+    
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)refreshDataModel:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kAskForRefreshNotificationName object:nil];
+}
+
+- (void)reloadTableViewData:(id)sender {
+    [self.refreshControl endRefreshing];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,7 +75,7 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [_stop[@"routesArray"] count];
+    return [_stop[@"busses"] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -66,14 +84,24 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if ( !cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-    NSString *title = _stop[@"routesArray"][indexPath.row][@"routeName"];
+    NSString *title = _stop[@"busses"][indexPath.row][@"routeName"];
+    NSString* toa = _stop[@"busses"][indexPath.row][@"toa1"];
     
     cell.textLabel.text = title;
+    cell.detailTextLabel.text = toa;
     
     // Configure the cell...
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return 40.0f;
+    } else {
+        return 80.0f;
+    }
 }
 
 /*
@@ -114,6 +142,11 @@
     return YES;
 }
 */
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 /*
 #pragma mark - Navigation

@@ -11,4 +11,6 @@
 
 @interface UMBStopMapDetailViewController : UIViewController
 
+- (id)initWithStop:(NSDictionary*)stop;
+
 @end

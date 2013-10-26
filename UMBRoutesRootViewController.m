@@ -32,8 +32,6 @@
         self.refreshControl = refreshControl;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewData:) name:kRefreshedDataModelNotificationName object:nil];
         
-        _routesArray = [NSArray new];
-        _routesArray = [[UMBXMLDataModel defaultXMLDataModel] getActiveRoutes];
         [self.tableView setDelegate:self];
         [self.tableView setDataSource:self];
     }
@@ -43,7 +41,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    _routesArray = [[UMBXMLDataModel defaultXMLDataModel] getActiveRoutes];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -59,7 +57,9 @@
 
 - (void)reloadTableViewData:(id)sender {
     [self.refreshControl endRefreshing];
+    _routesArray = [[UMBXMLDataModel defaultXMLDataModel] getActiveRoutes];
     [self.tableView reloadData];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -127,8 +127,7 @@
 */
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UMBRouteDetailViewController* detailViewController = [[UMBRouteDetailViewController alloc] initWithStyle:UITableViewStylePlain];
-    [detailViewController setRoute:_routesArray[indexPath.row]];
+    UMBRouteDetailViewController* detailViewController = [[UMBRouteDetailViewController alloc] initWithRouteWithName:_routesArray[indexPath.row]];
     
     //UMBDeveloperCreditViewController* viewController = [[UMBDeveloperCreditViewController alloc] init];
     [self.navigationController pushViewController:detailViewController animated:YES];
@@ -150,6 +149,11 @@
     return YES;
 }
 */
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 /*
 #pragma mark - Navigation
