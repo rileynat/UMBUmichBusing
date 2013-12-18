@@ -114,7 +114,12 @@ double distanceBetweenUserLocationAndObjectLocation( double userLatitude, double
 }
 
 - (NSArray*)getStopsForRouteWithName:(NSString *)routeName {
-    return _xmlPublicFeedDict[@"route"];
+    for ( NSDictionary* tempDict in _xmlPublicFeedDict[@"route"] ) {
+        if ( [tempDict[@"name"] isEqualToString:routeName] ) {
+            return tempDict;
+        }
+    }
+    return nil;
 }
 
 - (NSArray*)getActiveRoutes {
@@ -168,10 +173,10 @@ double distanceBetweenUserLocationAndObjectLocation( double userLatitude, double
         longitudeString = obj2[@"longitude"];
         double distToObject2 = distanceBetweenUserLocationAndObjectLocation( userLocation.latitude, userLocation.longitude, [latitudeString doubleValue], [longitudeString doubleValue]);
         if ( distToObject1 > distToObject2 ) {
-            return (NSComparisonResult) NSOrderedAscending;
+            return (NSComparisonResult) NSOrderedDescending;
         }
         else {
-            return (NSComparisonResult) NSOrderedDescending;
+            return (NSComparisonResult) NSOrderedAscending;
         }
     }];
     

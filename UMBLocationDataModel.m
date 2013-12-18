@@ -23,7 +23,7 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     _currentLocation = locations[0];
-    NSLog(@"%@", _currentLocation);
+    //NSLog(@"%@", _currentLocation);
     
     if ( !_mapView ) {
         [self setUpMapView];
@@ -41,6 +41,7 @@
 - (void)setUpMapView {
     _mapView = [MKMapView new];
     [_mapView setDelegate:self];
+    _mapView.showsUserLocation = YES;
     NSArray* stopArray = [[UMBXMLDataModel defaultXMLDataModel] sortStopsWithLatAndLong];
     for ( NSDictionary* stop in stopArray ) {
         UMBStopAnnotation* annotation = [[UMBStopAnnotation alloc] initWithCoordinate:CLLocationCoordinate2DMake([stop[@"latitude"] doubleValue], [stop[@"longitude"] doubleValue]) andTitle:stop[@"name"]];
@@ -52,6 +53,9 @@
 }
 
 - (MKAnnotationView*)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    if ([annotation isKindOfClass:[MKUserLocation class]]) {
+        return nil;
+    }
     static NSString* MyIdentifier = @"CinemaMapAnotation";
     MKPinAnnotationView* pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:MyIdentifier];
     if (!pinView)

@@ -12,13 +12,14 @@
 
 @interface UMBRouteDetailViewController () {
     NSArray* _stops;
+    NSMutableDictionary* _toaDict;
 }
 
 @end
 
 @implementation UMBRouteDetailViewController
 
-- (id)initWithRouteWithName:(NSString*)routeName {
+- (id)initWithRoute:(NSDictionary*)route {
     self = [super initWithStyle:UITableViewStylePlain];
     if ( self ) {
         UIRefreshControl* refreshControl = [[UIRefreshControl alloc] init];
@@ -29,7 +30,11 @@
         
         [self.tableView setDataSource:self];
         [self.tableView setDelegate:self];
-        _stops = [[UMBXMLDataModel defaultXMLDataModel] getStopsForRouteWithName:routeName];
+        //_stops = [[UMBXMLDataModel defaultXMLDataModel] getStopsForRouteWithName:routeName];
+        
+        
+        _stops = route[@"stop"];
+        _toaDict = [NSMutableDictionary new];
         
         
     }
@@ -85,17 +90,39 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if ( !cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-    NSString *title = _stops[indexPath.row][@"name"];
-    NSString* subtitle = @"12 minutes and 40 seconds";
+    NSString *title = _stops[indexPath.row][@"name2"];
+    
+    //NSString* subtitle = @"12 minutes and 40 seconds";
     //NSString* subtitle = _stops[indexPath.row][@"toa1"];
+    NSString* toaCountStr = _stops[indexPath.row][@"toacount"];
+    NSInteger toaCount = [toaCountStr integerValue];
+    NSInteger min = NSIntegerMax;
+    for ( int i = 0; i < toaCount; i++ ) {
+        NSString* accessString = [NSString stringWithFormat:@"toa%d", i + 1];
+        NSString* toaStr = _stops[indexPath.row][accessString];
+        NSInteger toaInt = (NSInteger)[toaStr doubleValue];
+        if ( min > toaInt ) {
+            min = toaInt;
+        }
+        [_toaDict setObject:[NSNumber numberWithInteger:toaInt] forKey:accessString];
+    }
+    
+    NSString* subtitle = [NSString stringWithString:[self timeFormattedStringFrom:min]];
     
     cell.textLabel.text = title;
     cell.detailTextLabel.text = subtitle;
     
     // Configure the cell...
     return cell;
+}
+
+- (NSString*)timeFormattedStringFrom:(NSInteger)integer_in {
+    NSInteger minutes = integer_in / 60;
+    NSInteger seconds = integer_in % 60;
+    
+    return [NSString stringWithFormat:@"%d min", minutes];
 }
 
 /*

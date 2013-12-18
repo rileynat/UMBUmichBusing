@@ -26,12 +26,58 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UMBUMichBusing/UMBXMLDataModel.m"
-            timestampString = "404520367.510795"
+            timestampString = "404523234.025677"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "117"
             endingLineNumber = "117"
             landmarkName = "-getStopsForRouteWithName:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[UMBXMLDataModel getStopsForRouteWithName:]"
+                  moduleName = "UMBUMichBusing"
+                  urlString = "file:///Users/nathanriley/UMBUMichBusing/UMBUMichBusing/UMBXMLDataModel.m"
+                  timestampString = "409007756.73101"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "117"
+                  endingLineNumber = "117"
+                  offsetFromSymbolStart = "85">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[UMBXMLDataModel getStopsForRouteWithName:]"
+                  moduleName = "UMBUMichBusing"
+                  urlString = "file:///Users/nathanriley/UMBUMichBusing/UMBUMichBusing/UMBXMLDataModel.m"
+                  timestampString = "409007756.731371"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "117"
+                  endingLineNumber = "117"
+                  offsetFromSymbolStart = "651">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UMBStopTableDetailViewController.m"
+            timestampString = "409007754.464573"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

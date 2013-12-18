@@ -87,10 +87,25 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     NSString *title = _stop[@"busses"][indexPath.row][@"routeName"];
-    NSString* toa = _stop[@"busses"][indexPath.row][@"toa1"];
+    //NSString* toa = _stop[@"busses"][indexPath.row][@"toa1"];
+    
+    NSString* toaCountStr = _stop[@"busses"][indexPath.row][@"toacount"];
+    NSInteger toaCount = [toaCountStr integerValue];
+    NSInteger min = NSIntegerMax;
+    for ( int i = 0; i < toaCount; i++ ) {
+        NSString* accessString = [NSString stringWithFormat:@"toa%d", i + 1];
+        NSString* toaStr = _stop[@"busses"][indexPath.row][accessString];
+        NSInteger toaInt = (NSInteger)[toaStr doubleValue];
+        if ( min > toaInt ) {
+            min = toaInt;
+        }
+        //[_toaDict setObject:[NSNumber numberWithInteger:toaInt] forKey:accessString];
+    }
+    
+    NSString* subtitle = [NSString stringWithString:[self timeFormattedStringFrom:min]];
     
     cell.textLabel.text = title;
-    cell.detailTextLabel.text = toa;
+    cell.detailTextLabel.text = subtitle;
     
     // Configure the cell...
     return cell;
@@ -102,6 +117,13 @@
     } else {
         return 80.0f;
     }
+}
+
+- (NSString*)timeFormattedStringFrom:(NSInteger)integer_in {
+    NSInteger minutes = integer_in / 60;
+    NSInteger seconds = integer_in % 60;
+    
+    return [NSString stringWithFormat:@"%d min", minutes];
 }
 
 /*

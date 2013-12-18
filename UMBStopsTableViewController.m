@@ -31,8 +31,7 @@
         self.refreshControl = refreshControl;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableViewData:) name:kRefreshedDataModelNotificationName object:nil];
         
-        _busArray = [NSArray new];
-        _busArray = [[UMBXMLDataModel defaultXMLDataModel] getActiveStopsSortedByUserLocation];
+        
         [self.tableView setDelegate:self];
         [self.tableView setDataSource:self];
     }
@@ -43,6 +42,8 @@
 {
     [super viewDidLoad];
 
+    _busArray = [NSArray new];
+    _busArray = [[UMBXMLDataModel defaultXMLDataModel] getActiveStopsSortedByUserLocation];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -80,6 +81,8 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
+    _busArray = [[UMBXMLDataModel defaultXMLDataModel] getActiveStopsSortedByUserLocation];
+
     return 1;
 }
 

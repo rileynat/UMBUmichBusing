@@ -127,7 +127,7 @@
 */
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UMBRouteDetailViewController* detailViewController = [[UMBRouteDetailViewController alloc] initWithRouteWithName:_routesArray[indexPath.row]];
+    UMBRouteDetailViewController* detailViewController = [[UMBRouteDetailViewController alloc] initWithRoute:_routesArray[indexPath.row]];
     
     //UMBDeveloperCreditViewController* viewController = [[UMBDeveloperCreditViewController alloc] init];
     [self.navigationController pushViewController:detailViewController animated:YES];
