@@ -41,7 +41,7 @@
                   symbolName = "-[UMBXMLDataModel getStopsForRouteWithName:]"
                   moduleName = "UMBUMichBusing"
                   urlString = "file:///Users/nathanriley/UMBUMichBusing/UMBUMichBusing/UMBXMLDataModel.m"
-                  timestampString = "409007756.73101"
+                  timestampString = "410464797.014668"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "117"
@@ -55,7 +55,7 @@
                   symbolName = "-[UMBXMLDataModel getStopsForRouteWithName:]"
                   moduleName = "UMBUMichBusing"
                   urlString = "file:///Users/nathanriley/UMBUMichBusing/UMBUMichBusing/UMBXMLDataModel.m"
-                  timestampString = "409007756.731371"
+                  timestampString = "410464797.015168"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "117"
@@ -63,22 +63,6 @@
                   offsetFromSymbolStart = "651">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "UMBStopTableDetailViewController.m"
-            timestampString = "409007754.464573"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
-            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
