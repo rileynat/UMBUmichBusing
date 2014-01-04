@@ -9,12 +9,18 @@
 #import "UMBLocationDataModel.h"
 #import "UMBXMLDataModel.h"
 #import "UMBStopAnnotation.h"
+#import "XMLDictionary.h"
+
 
 #define METERS_PER_MILE 1609.344
+
+NSString* const kUMBRouteTraceURL = @"http://mbus.pts.umich.edu/shared/map_trace_route_#.xml";
 
 @interface UMBLocationDataModel () {
     CLLocationManager* _locationManager;
     MKMapView* _mapView;
+    NSArray* _routeIDArray;
+    NSMutableArray* _routeTraceArray;
 }
 
 @end
@@ -35,7 +41,10 @@
     [_locationManager setDelegate:self];
     [_locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
     [_locationManager startUpdatingLocation];
+    _routeIDArray = [[UMBXMLDataModel defaultXMLDataModel] getRouteIDs];
+    [self setUpMapView];
     
+    [self getRouteTraceDictionaries];
 }
 
 - (void)setUpMapView {
@@ -80,8 +89,23 @@
     return pinView;
 }
 
-- (void)viewDetails:(id)sender {
+- (void)getRouteTraceDictionaries {
+    _routeTraceArray = [NSMutableArray new];
+    for ( NSString* num in _routeIDArray ) {
+        NSString* tempURLString = [kUMBRouteTraceURL stringByReplacingOccurrencesOfString:@"#" withString:num];
+        NSString* tempString = [NSString stringWithContentsOfURL:[NSURL URLWithString:tempURLString] encoding:NSUTF8StringEncoding error:nil];
+        NSDictionary* tempDict = [NSDictionary dictionaryWithXMLString:tempString];
+        [_routeTraceArray addObject:tempDict];
+    }
+    //NSLog(@"%@", _routeTraceArray);
+}
 
+- (void)traceRouteOnMapWithID:(NSString*)idNumber {
+    
+}
+
+- (void)viewDetails:(id)sender {
+    NSLog(@"something pressed");
 }
 
 - (CLLocationCoordinate2D)getUserLocation {

@@ -101,6 +101,10 @@
         }
         //[_toaDict setObject:[NSNumber numberWithInteger:toaInt] forKey:accessString];
     }
+    if ( min == NSIntegerMax ) {
+        NSLog(@"ERROR: This stop detail did not return a toa");
+        return cell;
+    }
     
     NSString* subtitle = [NSString stringWithString:[self timeFormattedStringFrom:min]];
     
@@ -122,7 +126,9 @@
 - (NSString*)timeFormattedStringFrom:(NSInteger)integer_in {
     NSInteger minutes = integer_in / 60;
     NSInteger seconds = integer_in % 60;
-    
+    if ( minutes == 0 ) {
+        return @"Arriving";
+    }
     return [NSString stringWithFormat:@"%d min", minutes];
 }
 

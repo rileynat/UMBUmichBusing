@@ -91,17 +91,27 @@ double distanceBetweenUserLocationAndObjectLocation( double userLatitude, double
                 [tempDict setObject:route[@"name"] forKey:@"routeName"];
                 latitudeStr = stop[@"latitude"];
                 longitudeStr = stop[@"longitude"];
-                NSString* toa = [stop objectForKey:@"toa1"];
+                NSString* toa = [NSString new];
+//                if ( toa != nil ) {
+//                    [tempDict setObject:toa forKey:@"toa1"];
+//                }
+//                toa = [stop objectForKey:@"toa2"];
+//                if ( toa != nil ) {
+//                    [tempDict setObject:toa forKey:@"toa2"];
+//                }
+//                toa = [stop objectForKey:@"toa3"];
+//                if ( toa != nil ) {
+//                    [tempDict setObject:toa forKey:@"toa3"];
+//                }
+                toa = [stop objectForKey:@"toacount"];
                 if ( toa != nil ) {
-                    [tempDict setObject:toa forKey:@"toa1"];
-                }
-                toa = [stop objectForKey:@"toa2"];
-                if ( toa != nil ) {
-                    [tempDict setObject:toa forKey:@"toa2"];
-                }
-                toa = [stop objectForKey:@"toa3"];
-                if ( toa != nil ) {
-                    [tempDict setObject:toa forKey:@"toa3"];
+                    [tempDict setObject:toa forKey:@"toacount"];
+                    for ( int i = 0; i < [toa intValue]; i++ )  {
+                        toa = [stop objectForKey:[NSString stringWithFormat:@"toa%d", i + 1]];
+                        if ( toa != nil ) {
+                            [tempDict setObject:toa forKey:[NSString stringWithFormat:@"toa%d", i+1]];
+                        }
+                    }
                 }
                 [busses addObject:tempDict];
             }
@@ -181,6 +191,15 @@ double distanceBetweenUserLocationAndObjectLocation( double userLatitude, double
     }];
     
     return stopsArray;
+}
+
+- (NSArray*)getRouteIDs {
+    NSMutableArray* IDArray = [NSMutableArray new];
+    for (NSDictionary* route in _xmlPublicFeedDict[@"route"]) {
+        NSString* temp = route[@"id"];
+        [IDArray addObject:temp];
+    }
+    return IDArray;
 }
 
 - (void)refreshDataModelFromServer:(id)sender {

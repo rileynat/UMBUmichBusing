@@ -33,4 +33,6 @@ extern NSString* const kRefreshedDataModelNotificationName;
 
 - (NSArray*)sortStopsWithLatAndLong;
 
+- (NSArray*)getRouteIDs;
+
 @end
