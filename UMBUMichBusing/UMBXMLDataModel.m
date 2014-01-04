@@ -57,6 +57,7 @@ double distanceBetweenUserLocationAndObjectLocation( double userLatitude, double
     if ( error ) {
         UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"Error in loading data" message:@"When connecting to the Magic Bus server there was a connection error and the information could not be downloaded. Drag upward on any screen to refresh." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil];
         [alertView show];
+        return;
     }
     _xmlStopsDict = [NSDictionary dictionaryWithXMLString:string];
     
@@ -167,6 +168,7 @@ double distanceBetweenUserLocationAndObjectLocation( double userLatitude, double
     NSMutableSet* _activeSet = [NSMutableSet new];
     NSMutableArray* stopsArray = [NSMutableArray new];
     for ( NSDictionary* routes in _xmlPublicFeedDict[@"route"] ) {
+        NSLog(@"%@", routes);
         for ( NSDictionary* stop in routes[@"stop"] ) {
             if ( ![_activeSet containsObject:stop[@"name2"]] ) {
                 [stopsArray addObject:@{@"name": stop[@"name2"], @"latitude": stop[@"latitude"], @"longitude": stop[@"longitude"]}];
