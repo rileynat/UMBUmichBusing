@@ -10,6 +10,7 @@
 #import "UMBXMLDataModel.h"
 #import "UMBStopAnnotation.h"
 #import "XMLDictionary.h"
+#import "UIColor+VFAdditions.h"
 
 
 #define METERS_PER_MILE 1609.344
@@ -20,7 +21,7 @@ NSString* const kUMBRouteTraceURL = @"http://mbus.pts.umich.edu/shared/map_trace
     CLLocationManager* _locationManager;
     MKMapView* _mapView;
     NSArray* _routeIDArray;
-    NSMutableArray* _routeTraceArray;
+    NSMutableDictionary* _routeTraceDict;
 }
 
 @end
@@ -29,7 +30,7 @@ NSString* const kUMBRouteTraceURL = @"http://mbus.pts.umich.edu/shared/map_trace
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     _currentLocation = locations[0];
-    //NSLog(@"%@", _currentLocation);
+    NSLog(@"found location");
     
     if ( !_mapView ) {
         [self setUpMapView];
@@ -41,10 +42,9 @@ NSString* const kUMBRouteTraceURL = @"http://mbus.pts.umich.edu/shared/map_trace
     [_locationManager setDelegate:self];
     [_locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
     [_locationManager startUpdatingLocation];
-    _routeIDArray = [[UMBXMLDataModel defaultXMLDataModel] getRouteIDs];
     [self setUpMapView];
     
-    [self getRouteTraceDictionaries];
+    
 }
 
 - (void)setUpMapView {
@@ -89,19 +89,68 @@ NSString* const kUMBRouteTraceURL = @"http://mbus.pts.umich.edu/shared/map_trace
     return pinView;
 }
 
+- (void)setUpRouteTraces {
+    _routeIDArray = [[UMBXMLDataModel defaultXMLDataModel] getRouteIDs];
+    [self getRouteTraceDictionaries];
+}
+
+
 - (void)getRouteTraceDictionaries {
-    _routeTraceArray = [NSMutableArray new];
+    _routeTraceDict = [NSMutableDictionary new];
     for ( NSString* num in _routeIDArray ) {
         NSString* tempURLString = [kUMBRouteTraceURL stringByReplacingOccurrencesOfString:@"#" withString:num];
         NSString* tempString = [NSString stringWithContentsOfURL:[NSURL URLWithString:tempURLString] encoding:NSUTF8StringEncoding error:nil];
         NSDictionary* tempDict = [NSDictionary dictionaryWithXMLString:tempString];
-        [_routeTraceArray addObject:tempDict];
+        [_routeTraceDict setObject:tempDict forKey:num];
+        [self traceRouteOnMapWithID:num];
     }
-    //NSLog(@"%@", _routeTraceArray);
+    
 }
 
 - (void)traceRouteOnMapWithID:(NSString*)idNumber {
+    NSArray* routeArray = _routeTraceDict[idNumber][@"item"];
+    [self drawRoute:routeArray withColor:_routeTraceDict[idNumber][@"route_info"][@"color"]];
+}
+
+- (void)togglePinAnnotationViewWithTitle:(NSString *)title {
+    for (UMBStopAnnotation *thisAnnotation in [_mapView annotations] ) {
+        if ( [thisAnnotation.title isEqualToString:title] ) {
+            if ( !thisAnnotation.selected ) {
+                thisAnnotation.selected = YES;
+                [_mapView selectAnnotation:thisAnnotation animated:YES];
+            } else {
+                thisAnnotation.selected = NO;
+                [_mapView deselectAnnotation:thisAnnotation animated:NO];
+            }
+        }
+    }
+}
+
+- (void) drawRoute:(NSArray *)path withColor:(NSString*)color
+{
+    NSInteger numberOfSteps = path.count;
     
+    CLLocationCoordinate2D coordinates[numberOfSteps];
+    for (NSInteger index = 0; index < numberOfSteps; index++) {
+        NSDictionary *location = [path objectAtIndex:index];
+        CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake([location[@"latitude"] doubleValue], [location[@"longitude"] doubleValue]);
+        
+        coordinates[index] = coordinate;
+    }
+    
+    MKPolyline *polyLine = [MKPolyline polylineWithCoordinates:coordinates count:numberOfSteps];
+    [_mapView addOverlay:polyLine];
+    
+    [polyLine setTitle:color];
+}
+
+
+- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay {
+    MKPolylineView *polylineView = [[MKPolylineView alloc] initWithPolyline:overlay];
+    polylineView.strokeColor = [UIColor colorWithHexString:overlay.title];
+    polylineView.lineWidth = 1.0;
+    
+    return polylineView;
 }
 
 - (void)viewDetails:(id)sender {

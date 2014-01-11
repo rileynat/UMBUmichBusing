@@ -11,6 +11,8 @@
 @class UMBDeveloperCreditViewController;
 @class UMBRoutesRootViewController;
 @class UMBStopsTableViewController;
+@class UMBStopDetailRootViewController;
+@class UMBClosestScrollViewController;
 
 @interface UMBRootTabBarViewController : UITabBarController <UITabBarControllerDelegate>
 
@@ -19,6 +21,10 @@
 @property (strong, nonatomic) UMBRoutesRootViewController* routesRootViewController;
 
 @property (strong, nonatomic) UMBStopsTableViewController* stopsTableViewController;
+
+@property (strong, nonatomic) UMBClosestScrollViewController* closestStopViewController;
+
+//@property (strong, nonatomic) UMBStopDetailRootViewController* closestStopViewController;
 
 @property (strong, nonatomic) UINavigationController* routesNavController;
 

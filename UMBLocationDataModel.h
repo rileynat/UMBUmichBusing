@@ -18,10 +18,14 @@
 
 - (MKMapView*)getMapView;
 
+- (void)togglePinAnnotationViewWithTitle:(NSString*)title;
+
 - (void)recenterMapAtCoordinates:(CLLocationCoordinate2D)coord;
 
 + (UMBLocationDataModel*)defaultLocationDataModel;
 
 - (CLLocationCoordinate2D)getUserLocation;
+
+- (void)setUpRouteTraces;
 
 @end

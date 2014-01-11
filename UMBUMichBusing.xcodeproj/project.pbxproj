@@ -33,6 +33,7 @@
 		376C1DF51809C9860038166A /* UMBStopMapDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 376C1DF41809C9860038166A /* UMBStopMapDetailViewController.m */; };
 		376C1DF71809C9C70038166A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 376C1DF61809C9C70038166A /* MapKit.framework */; };
 		37AC4EA417DFA03000D1A425 /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 37638E0217DF979100F143B6 /* XMLDictionary.m */; };
+		37B6113C1878B312008CDB45 /* UMBClosestScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B6113B1878B312008CDB45 /* UMBClosestScrollViewController.m */; };
 		37E2D9C217F38E0E000C457D /* UMBLocationDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E2D9C117F38E0E000C457D /* UMBLocationDataModel.m */; };
 		37E2D9C417F38E25000C457D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37E2D9C317F38E25000C457D /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
@@ -80,6 +81,8 @@
 		376C1DF31809C9860038166A /* UMBStopMapDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UMBStopMapDetailViewController.h; path = ../UMBStopMapDetailViewController.h; sourceTree = "<group>"; };
 		376C1DF41809C9860038166A /* UMBStopMapDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UMBStopMapDetailViewController.m; path = ../UMBStopMapDetailViewController.m; sourceTree = "<group>"; };
 		376C1DF61809C9C70038166A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		37B6113A1878B312008CDB45 /* UMBClosestScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMBClosestScrollViewController.h; sourceTree = "<group>"; };
+		37B6113B1878B312008CDB45 /* UMBClosestScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMBClosestScrollViewController.m; sourceTree = "<group>"; };
 		37E2D9C017F38E0E000C457D /* UMBLocationDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UMBLocationDataModel.h; path = ../UMBLocationDataModel.h; sourceTree = "<group>"; };
 		37E2D9C117F38E0E000C457D /* UMBLocationDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UMBLocationDataModel.m; path = ../UMBLocationDataModel.m; sourceTree = "<group>"; };
 		37E2D9C317F38E25000C457D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -158,6 +161,8 @@
 				376C1DF41809C9860038166A /* UMBStopMapDetailViewController.m */,
 				372C519A181C722F0077FCF1 /* UMBStopDetailRootViewController.h */,
 				372C519B181C722F0077FCF1 /* UMBStopDetailRootViewController.m */,
+				37B6113A1878B312008CDB45 /* UMBClosestScrollViewController.h */,
+				37B6113B1878B312008CDB45 /* UMBClosestScrollViewController.m */,
 				37638DFD17DF8E5700F143B6 /* UMBXMLDataModel.h */,
 				37638DFE17DF8E5700F143B6 /* UMBXMLDataModel.m */,
 				37E2D9C017F38E0E000C457D /* UMBLocationDataModel.h */,
@@ -274,6 +279,7 @@
 				372F2C6917E3888700AEE8DC /* UIColor+VFAdditions.m in Sources */,
 				372C519C181C722F0077FCF1 /* UMBStopDetailRootViewController.m in Sources */,
 				376C1DEF18087A470038166A /* UMBRouteDetailViewController.m in Sources */,
+				37B6113C1878B312008CDB45 /* UMBClosestScrollViewController.m in Sources */,
 				37E2D9C217F38E0E000C457D /* UMBLocationDataModel.m in Sources */,
 				37AC4EA417DFA03000D1A425 /* XMLDictionary.m in Sources */,
 				374B370617DF8C31008C8828 /* main.m in Sources */,

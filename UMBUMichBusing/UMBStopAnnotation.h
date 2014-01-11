@@ -19,4 +19,6 @@
 
 @property (nonatomic, copy, readonly) NSString* title;
 
+@property BOOL selected;
+
 @end

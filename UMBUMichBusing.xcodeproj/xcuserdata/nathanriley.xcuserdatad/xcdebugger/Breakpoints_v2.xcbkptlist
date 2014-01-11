@@ -22,16 +22,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "UMBUMichBusing/UMBXMLDataModel.m"
-            timestampString = "410556506.981847"
+            filePath = "UMBRouteDetailViewController.m"
+            timestampString = "410558472.590422"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "208"
-            endingLineNumber = "208"
-            landmarkName = "-refreshDataModelFromServer:"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "-reloadTableViewData:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,13 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "UMBUMichBusing/UMBXMLDataModel.m"
-            timestampString = "410556253.06625"
+            filePath = "UMBLocationDataModel.m"
+            timestampString = "411019397.0828"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
-            landmarkName = "-sortStopsWithLatAndLong"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "-mapView:viewForOverlay:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

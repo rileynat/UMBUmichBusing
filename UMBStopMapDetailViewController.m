@@ -39,8 +39,10 @@
     [[UMBLocationDataModel defaultLocationDataModel] recenterMapAtCoordinates:CLLocationCoordinate2DMake([_stop[@"latitude"] doubleValue] + OFFSET_FOR_HALF_MAP, [_stop[@"longitude"] doubleValue])];
     } else  {
         _mapView = [[MKMapView alloc] init];
+        NSLog(@"generated mapview something may have failed");
     }
     [_mapView setFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height * 0.5)];
+    [[UMBLocationDataModel defaultLocationDataModel] togglePinAnnotationViewWithTitle:_stop[@"name"]];
     [[UMBLocationDataModel defaultLocationDataModel] recenterMapAtCoordinates:CLLocationCoordinate2DMake([_stop[@"latitude"] doubleValue] + OFFSET_FOR_HALF_MAP, [_stop[@"longitude"] doubleValue])];
     [self.view addSubview:_mapView];
 }

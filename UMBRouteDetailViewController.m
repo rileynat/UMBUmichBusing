@@ -13,6 +13,7 @@
 @interface UMBRouteDetailViewController () {
     NSArray* _stops;
     NSMutableDictionary* _toaDict;
+    NSString* _routeName;
 }
 
 @end
@@ -30,9 +31,9 @@
         
         [self.tableView setDataSource:self];
         [self.tableView setDelegate:self];
-        //_stops = [[UMBXMLDataModel defaultXMLDataModel] getStopsForRouteWithName:routeName];
+        //_stops = [[UMBXMLDataModel defaultXMLDataModel] getStopsForRouteWithName:route[@"name"]];
         
-        
+        _routeName = route[@"name"];
         _stops = route[@"stop"];
         _toaDict = [NSMutableDictionary new];
         
@@ -59,6 +60,7 @@
 
 - (void)reloadTableViewData:(id)sender {
     [self.refreshControl endRefreshing];
+    _stops = [[UMBXMLDataModel defaultXMLDataModel] getStopsForRouteWithName:_routeName];
     [self.tableView reloadData];
 }
 
@@ -122,6 +124,9 @@
     NSInteger minutes = integer_in / 60;
     NSInteger seconds = integer_in % 60;
     if ( minutes == 0 ) {
+        if ( seconds > 30 ) {
+            return @"< 1 min";
+        }
         return @"Arriving";
     }
     return [NSString stringWithFormat:@"%d min", minutes];

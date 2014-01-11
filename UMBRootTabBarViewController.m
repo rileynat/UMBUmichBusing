@@ -10,6 +10,9 @@
 #import "UMBDeveloperCreditViewController.h"
 #import "UMBRoutesRootViewController.h"
 #import "UMBStopsTableViewController.h"
+#import "UMBStopDetailRootViewController.h"
+#import "UMBClosestScrollViewController.h"
+#import "UMBXMLDataModel.h"
 
 @interface UMBRootTabBarViewController ()
 
@@ -49,8 +52,10 @@
     _stopsNavController = [[UINavigationController alloc] initWithRootViewController:_stopsTableViewController];
     [_stopsTableViewController setTitle:@"Stops"];
     
+    _closestStopViewController = [[UMBClosestScrollViewController alloc] init];
+    [_closestStopViewController setTitle:@"Closest"];
     
-    [self setViewControllers:[NSArray arrayWithObjects:_routesNavController, _developerViewController, _stopsNavController, nil]];
+    [self setViewControllers:[NSArray arrayWithObjects:_routesNavController, _developerViewController, _stopsNavController, _closestStopViewController, nil]];
     [self setSelectedViewController:_developerViewController];
 }
 

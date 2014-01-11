@@ -37,8 +37,9 @@ static void VFSetUncaughtExceptionHandler(){
 //    } else {
 //        self.viewController = [[UMBViewController alloc] initWithNibName:@"UMBViewController_iPad" bundle:nil];
 //    }
-    [[UMBXMLDataModel defaultXMLDataModel] startParsingData];
     [[UMBLocationDataModel defaultLocationDataModel] setUpLocationServices];
+    [[UMBXMLDataModel defaultXMLDataModel] startParsingData];
+    
     
     self.tabBarController = [UMBRootTabBarViewController new];
     //[self.tabBarController setViewControllers:[NSArray arrayWithObject:self.viewController]];

@@ -8,6 +8,7 @@
 
 #import "UMBStopTableDetailViewController.h"
 #import "UMBXMLDataModel.h"
+#import "UIColor+VFAdditions.h"
 
 @interface UMBStopTableDetailViewController () {
     NSDictionary* _stop;
@@ -109,7 +110,9 @@
     NSString* subtitle = [NSString stringWithString:[self timeFormattedStringFrom:min]];
     
     cell.textLabel.text = title;
+    cell.textLabel.textColor = [UIColor colorWithHexString:_stop[@"busses"][indexPath.row][@"color"]];
     cell.detailTextLabel.text = subtitle;
+    cell.detailTextLabel.textColor = [UIColor colorWithHexString:_stop[@"busses"][indexPath.row][@"color"]];
     
     // Configure the cell...
     return cell;
@@ -127,6 +130,9 @@
     NSInteger minutes = integer_in / 60;
     NSInteger seconds = integer_in % 60;
     if ( minutes == 0 ) {
+        if ( seconds > 30 ) {
+            return @"< 1 min";
+        }
         return @"Arriving";
     }
     return [NSString stringWithFormat:@"%d min", minutes];

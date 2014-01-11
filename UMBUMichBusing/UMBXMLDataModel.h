@@ -27,9 +27,13 @@ extern NSString* const kRefreshedDataModelNotificationName;
 
 - (NSDictionary*)getStopWithName:(NSString*)stopName;
 
+- (NSString*)getClosestStopName;
+
 - (NSArray*)getActiveStops;
 
 - (NSArray*)getActiveStopsSortedByUserLocation;
+
+- (NSArray*)getStopsNameArray;
 
 - (NSArray*)sortStopsWithLatAndLong;
 
