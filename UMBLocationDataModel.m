@@ -42,7 +42,7 @@ NSString* const kUMBRouteTraceURL = @"http://mbus.pts.umich.edu/shared/map_trace
     [_locationManager setDelegate:self];
     [_locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
     [_locationManager startUpdatingLocation];
-    [self setUpMapView];
+    //[self setUpMapView];
     
     
 }
@@ -102,7 +102,7 @@ NSString* const kUMBRouteTraceURL = @"http://mbus.pts.umich.edu/shared/map_trace
         NSString* tempString = [NSString stringWithContentsOfURL:[NSURL URLWithString:tempURLString] encoding:NSUTF8StringEncoding error:nil];
         NSDictionary* tempDict = [NSDictionary dictionaryWithXMLString:tempString];
         [_routeTraceDict setObject:tempDict forKey:num];
-        [self traceRouteOnMapWithID:num];
+        //[self traceRouteOnMapWithID:num];
     }
     
 }
@@ -110,6 +110,17 @@ NSString* const kUMBRouteTraceURL = @"http://mbus.pts.umich.edu/shared/map_trace
 - (void)traceRouteOnMapWithID:(NSString*)idNumber {
     NSArray* routeArray = _routeTraceDict[idNumber][@"item"];
     [self drawRoute:routeArray withColor:_routeTraceDict[idNumber][@"route_info"][@"color"]];
+}
+
+- (void)removeRouteTraces {
+//    for (id<MKOverlay> overlayToRemove in _mapView.overlays)
+//    {
+//        if ([overlayToRemove isKindOfClass:[MKPolyline class]])
+//        {
+//            [_mapView removeOverlay:overlayToRemove];
+//        }
+//    }
+    [_mapView removeOverlays:_mapView.overlays];
 }
 
 - (void)togglePinAnnotationViewWithTitle:(NSString *)title {
@@ -128,6 +139,7 @@ NSString* const kUMBRouteTraceURL = @"http://mbus.pts.umich.edu/shared/map_trace
 
 - (void) drawRoute:(NSArray *)path withColor:(NSString*)color
 {
+    
     NSInteger numberOfSteps = path.count;
     
     CLLocationCoordinate2D coordinates[numberOfSteps];
@@ -139,17 +151,19 @@ NSString* const kUMBRouteTraceURL = @"http://mbus.pts.umich.edu/shared/map_trace
     }
     
     MKPolyline *polyLine = [MKPolyline polylineWithCoordinates:coordinates count:numberOfSteps];
+    [polyLine setTitle:color];
     [_mapView addOverlay:polyLine];
     
-    [polyLine setTitle:color];
+    
 }
 
 
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay {
     MKPolylineView *polylineView = [[MKPolylineView alloc] initWithPolyline:overlay];
     polylineView.strokeColor = [UIColor colorWithHexString:overlay.title];
-    polylineView.lineWidth = 1.0;
-    
+    polylineView.lineWidth = 6.0;
+    polylineView.alpha = 0.85;
+    [polylineView setNeedsDisplayInMapRect:_mapView.visibleMapRect];
     return polylineView;
 }
 
@@ -170,6 +184,30 @@ NSString* const kUMBRouteTraceURL = @"http://mbus.pts.umich.edu/shared/map_trace
         MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 0.5*METERS_PER_MILE, 0.5*METERS_PER_MILE);
         [_mapView setRegion:region];
     }
+}
+
+- (void)getWalkingDistanceFromCurrentLocationTo:(CLLocationCoordinate2D)dest {
+    NSString* urlString = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/distancematrix/json?origins=%f,%f&destinations= %f,%f&mode=walking&language=en-US&sensor=true", _currentLocation.coordinate.latitude, _currentLocation.coordinate.longitude, dest.latitude, dest.longitude];
+    urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL* url = [NSURL URLWithString:urlString];
+    NSURLRequest* request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20.0];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        NSHTTPURLResponse* r = (NSHTTPURLResponse*)response;
+        
+        if ( ( [r statusCode] == 200 ) &&
+            ( data != nil )  ) {
+            
+            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            if ( [json[@"rows"][0][@"elements"][0] objectForKey:@"duration"] ) {
+                NSNumber *durationValue = json[@"rows"][0][@"elements"][0][@"duration"][@"value"];
+            }
+            //NSLog(@"%ld", (long)durationValue);
+        }
+        if ( [r statusCode] == 400 ) {
+            NSLog(@"%@", connectionError);
+        }
+        NSLog(@"%ld", (long)[r statusCode]);
+    }];
 }
 
 + (UMBLocationDataModel*)defaultLocationDataModel {

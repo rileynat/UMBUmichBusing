@@ -41,13 +41,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "UMBLocationDataModel.m"
-            timestampString = "411019397.0828"
+            filePath = "UMBUMichBusing/UMBXMLDataModel.m"
+            timestampString = "411171660.531946"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
-            landmarkName = "-mapView:viewForOverlay:"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "-getStopWithName:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UMBLocationDataModel.m"
+            timestampString = "411178803.06587"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
+            landmarkName = "-getWalkingDistanceFromCurrentLocationTo:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

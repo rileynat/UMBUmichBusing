@@ -63,6 +63,7 @@ double distanceBetweenUserLocationAndObjectLocation( double userLatitude, double
     
     [self getActiveStopsSortedByUserLocation];
     
+    [[UMBLocationDataModel defaultLocationDataModel] setUpMapView];
     [[UMBLocationDataModel defaultLocationDataModel] setUpRouteTraces];
 }
 
@@ -93,6 +94,7 @@ double distanceBetweenUserLocationAndObjectLocation( double userLatitude, double
                 NSMutableDictionary* tempDict = [NSMutableDictionary new];
                 [tempDict setObject:_xmlPublicFeedDict[@"route"][@"name"] forKey:@"routeName"];
                 [tempDict setObject:_xmlPublicFeedDict[@"route"][@"busroutecolor"] forKey:@"color"];
+                [tempDict setObject:_xmlPublicFeedDict[@"route"][@"id"] forKey:@"id"];
                 latitudeStr = stop[@"latitude"];
                 longitudeStr = stop[@"longitude"];
                 NSString* toa = [NSString new];
@@ -127,6 +129,7 @@ double distanceBetweenUserLocationAndObjectLocation( double userLatitude, double
                 NSMutableDictionary* tempDict = [NSMutableDictionary new];
                 [tempDict setObject:route[@"name"] forKey:@"routeName"];
                 [tempDict setObject:route[@"busroutecolor"] forKey:@"color"];
+                [tempDict setObject:route[@"id"] forKey:@"id"];
                 latitudeStr = stop[@"latitude"];
                 longitudeStr = stop[@"longitude"];
                 NSString* toa = [NSString new];
@@ -233,7 +236,7 @@ double distanceBetweenUserLocationAndObjectLocation( double userLatitude, double
     if ([_xmlPublicFeedDict[@"routecount"] isEqual: @"1"] ) {
         NSDictionary* routes = _xmlPublicFeedDict[@"route"];
         for ( NSDictionary* stop in routes[@"stop"] ) {
-            if ( ![_activeSet containsObject:stop[@"name2"]] ) {
+            if ( ![_activeSet containsObject:stop[@"name2"]] && ![stop[@"toacount"] isEqualToString:@"0"]) {
                 [stopsArray addObject:@{@"name": stop[@"name2"], @"latitude": stop[@"latitude"], @"longitude": stop[@"longitude"]}];
             }
             [_activeSet addObject:stop[@"name2"]];
@@ -242,7 +245,7 @@ double distanceBetweenUserLocationAndObjectLocation( double userLatitude, double
     } else {
         for ( NSDictionary* routes in _xmlPublicFeedDict[@"route"] ) {
             for ( NSDictionary* stop in routes[@"stop"] ) {
-                if ( ![_activeSet containsObject:stop[@"name2"]] ) {
+                if ( ![_activeSet containsObject:stop[@"name2"]] && ![stop[@"toacount"] isEqualToString:@"0"] ) {
                     [stopsArray addObject:@{@"name": stop[@"name2"], @"latitude": stop[@"latitude"], @"longitude": stop[@"longitude"]}];
                 }
                 [_activeSet addObject:stop[@"name2"]];

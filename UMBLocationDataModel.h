@@ -18,6 +18,8 @@
 
 - (MKMapView*)getMapView;
 
+- (void)setUpMapView;
+
 - (void)togglePinAnnotationViewWithTitle:(NSString*)title;
 
 - (void)recenterMapAtCoordinates:(CLLocationCoordinate2D)coord;
@@ -27,5 +29,11 @@
 - (CLLocationCoordinate2D)getUserLocation;
 
 - (void)setUpRouteTraces;
+
+- (void)traceRouteOnMapWithID:(NSString*)idNumber;
+
+- (void)removeRouteTraces;
+
+- (void)getWalkingDistanceFromCurrentLocationTo:(CLLocationCoordinate2D)dest;
 
 @end

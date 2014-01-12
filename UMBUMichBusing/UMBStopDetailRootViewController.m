@@ -38,13 +38,16 @@
 {
     [super viewDidLoad];
     _stop = [[UMBXMLDataModel defaultXMLDataModel] getStopWithName:_stopName];
+    [[UMBLocationDataModel defaultLocationDataModel] removeRouteTraces];
+    for (NSDictionary* bus in _stop[@"busses"]) {
+        [[UMBLocationDataModel defaultLocationDataModel] traceRouteOnMapWithID:bus[@"id"]];
+    }
 	_mapViewController = [[UMBStopMapDetailViewController alloc] initWithStop:_stop];
     _tableViewController = [[UMBStopTableDetailViewController alloc] initWithStop:_stop];
     [_mapViewController.view setFrame:CGRectMake([UIScreen mainScreen].bounds.origin.x, [UIScreen mainScreen].bounds.origin.y, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height * 0.5)];
     [_tableViewController.view setFrame:CGRectMake([UIScreen mainScreen].bounds.origin.x, [UIScreen mainScreen].bounds.size.height*0.5, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height*0.5)];
     [self.view addSubview:_mapViewController.view];
     [self.view addSubview:_tableViewController.view];
-    
 }
 
 - (void)didReceiveMemoryWarning

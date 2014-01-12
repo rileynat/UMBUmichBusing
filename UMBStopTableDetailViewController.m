@@ -8,6 +8,7 @@
 
 #import "UMBStopTableDetailViewController.h"
 #import "UMBXMLDataModel.h"
+#import "UMBLocationDataModel.h"
 #import "UIColor+VFAdditions.h"
 
 @interface UMBStopTableDetailViewController () {
@@ -32,7 +33,8 @@
         
         _stop = stop;
         //[[UMBXMLDataModel defaultXMLDataModel] getStopWithName:stopName];
-        
+     
+        [[UMBLocationDataModel defaultLocationDataModel] getWalkingDistanceFromCurrentLocationTo:CLLocationCoordinate2DMake([_stop[@"latitude"] doubleValue], [_stop[@"longitude"] doubleValue])];
     }
     
     return self;
@@ -41,6 +43,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
